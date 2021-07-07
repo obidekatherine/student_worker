@@ -205,9 +205,9 @@ class _JobMainstate extends State<JobMain> {
           stretch: true,
           backgroundColor: Colors.grey,
           expandedHeight: 180.0,
-          pinned: false,// context.read(jobProvider).pinned,
-          snap: true, // context.read(jobProvider).snap,
-          floating: true, //context.read(jobProvider).floating,
+          pinned: true,// context.read(jobProvider).pinned,
+          snap: false, // context.read(jobProvider).snap,
+          floating: false, //context.read(jobProvider).floating,
           flexibleSpace: FlexibleSpaceBar(
             title: Text('Student Worker'),
             background: buildSearchBackground(),
