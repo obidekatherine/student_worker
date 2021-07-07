@@ -2,16 +2,16 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-import 'description.dart';
+import 'job.dart';
 
-class JobDescriptionMain extends StatefulWidget {
+class JobApplied extends StatefulWidget {
   @override
-  _JobDescriptionMainstate createState() {
-    return _JobDescriptionMainstate();
+  _JobAppliedstate createState() {
+    return _JobAppliedstate();
   }
 }
 
-class _JobDescriptionMainstate extends State<JobDescriptionMain> {
+class _JobAppliedstate extends State<JobApplied> {
   bool showMore = false;
 
   int currentNavIndex = 0;
@@ -118,7 +118,7 @@ Widget buildApplyBtn() {
         ),
         onPressed: () => print("Login Pressed"),
         child: Text(
-          'Apply',
+          'Applied',
           style: TextStyle(
             color: Colors.white,
             fontSize: 18,

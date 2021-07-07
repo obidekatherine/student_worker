@@ -1,21 +1,24 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:student_worker/jobDescriptionMain.dart';
-import 'package:student_worker/jobSearchMain.dart';
-
-
+import 'global.dart';
 
 void main() {
-  runApp(StudentWorker());
+  runApp(ProviderScope(child: StudentWorker()));
 }
 
 class StudentWorker extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: '',
-      debugShowCheckedModeBanner: false, 
-    home: JobDescriptionMain(),
+      navigatorKey: navigatorKey,
+      title: 'Student Worker',
+      debugShowCheckedModeBanner: false,
+      onGenerateRoute: (settings) =>
+          CupertinoPageRoute(builder: pages?[settings.name]),
     );
   }
+
+  
 }

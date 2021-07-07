@@ -25,6 +25,7 @@ class IconLabel extends StatelessWidget {
     return Row(
       children: [
         icon,
+        SizedBox(width: 10),
         Text(
           label,
           // style: const TextStyle(
@@ -46,6 +47,7 @@ class JobWidget extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
+        SizedBox(height: 10),
         Text(job.title, style: TextStyle(fontWeight: FontWeight.bold)),
         SizedBox(height: 10),
         Text(job.company),
@@ -81,17 +83,14 @@ class JobWidget extends StatelessWidget {
             TextButton(
               onPressed: () {},
               child: Text(
-                '',
+                'view details',
                 style: TextStyle(
-                  color: Colors.black45,
-                    decoration: TextDecoration.underline, fontSize: 12),
+                    color: Colors.black45,
+                    decoration: TextDecoration.underline,
+                    fontSize: 12),
               ),
             ),
           ],
-        ),
-        Divider(
-          thickness: 1.00,
-          color: Colors.black54,
         ),
       ],
     );

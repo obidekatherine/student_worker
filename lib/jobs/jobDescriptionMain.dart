@@ -1,40 +1,17 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'description.dart';
+import 'job.dart';
+import 'jobProvider.dart';
 
-class JobApplied extends StatefulWidget {
+class JobDescriptionMain extends StatefulWidget {
   @override
-  _JobAppliedstate createState() {
-    return _JobAppliedstate();
+  _JobDescriptionMainstate createState() {
+    return _JobDescriptionMainstate();
   }
 }
 
-class _JobAppliedstate extends State<JobApplied> {
-  bool showMore = false;
-
-  int currentNavIndex = 0;
-
-  Widget buildJobList() {
-    List<JobModel> jobs =
-        List<JobModel>.generate(showMore ? 10 : 1, (index) => JobModel());
-    return ListView.builder(
-      physics: ClampingScrollPhysics(),
-      shrinkWrap: true,
-      itemCount: jobs.length,
-      itemBuilder: (_, i) => JobWidget(jobs[i]),
-    );
-  }
-
-  void onNavItemTap(int i) {
-    // Add a switch case statement here to perfom
-    // some action for a perticular item
-    setState(() {
-      currentNavIndex = i;
-    });
-  }
-
+class _JobDescriptionMainstate extends State<JobDescriptionMain> {
   Widget buildAbout() {
     return Text(
       'About Company',
@@ -56,7 +33,7 @@ class _JobAppliedstate extends State<JobApplied> {
     );
   }
 
-Widget buildText2() {
+  Widget buildText2() {
     return Text(
       'Responsibility Of Student',
       style: TextStyle(
@@ -67,8 +44,7 @@ Widget buildText2() {
     );
   }
 
-
-Widget buildText3() {
+  Widget buildText3() {
     return Text(
       '1. Prepare and develop tools'
       '\n \n2. Lead the entire student team'
@@ -81,8 +57,7 @@ Widget buildText3() {
     );
   }
 
-
-Widget buildText4() {
+  Widget buildText4() {
     return Text(
       'Who can apply',
       style: TextStyle(
@@ -93,7 +68,7 @@ Widget buildText4() {
     );
   }
 
-Widget buildText5() {
+  Widget buildText5() {
     return Text(
       'Candidates who:'
       '\n \n1. Available to work for duration of 3months'
@@ -107,7 +82,7 @@ Widget buildText5() {
     );
   }
 
-Widget buildApplyBtn() {
+  Widget buildApplyBtn() {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 25),
       width: double.infinity,
@@ -116,9 +91,9 @@ Widget buildApplyBtn() {
           primary: Colors.black87,
           elevation: 8,
         ),
-        onPressed: () => print("Login Pressed"),
+        onPressed: context.read(jobProvider).onApplyTap,
         child: Text(
-          'Applied',
+          'Apply',
           style: TextStyle(
             color: Colors.white,
             fontSize: 18,
@@ -129,35 +104,45 @@ Widget buildApplyBtn() {
     );
   }
 
+  Widget buildAppliedCard() {
+    return Card(
+      elevation: 8,
+      color: Colors.black,
+      child: Center(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8.0),
+          child: Text(
+            'Applied',
+            style: TextStyle(
+                color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18),
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        onTap: onNavItemTap,
-        currentIndex: currentNavIndex,
-        items: [
-          BottomNavigationBarItem(
-              icon: Icon(Icons.work_outline), label: 'Jobs'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.person_outlined), label: 'Applications'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.file_copy_outlined), label: 'Resume'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.person_pin), label: 'Profile'),
-        ],
+      appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () => Navigator.pop(context),
+          color: Colors.black,
+        ),
+        backgroundColor: Colors.white,
+        elevation: 0,
       ),
       body: SingleChildScrollView(
         physics: AlwaysScrollableScrollPhysics(),
         padding: EdgeInsets.symmetric(
-          horizontal: 25,
-          vertical: 80,
+          horizontal: 16,
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            buildJobList(),
+            JobWidget(JobModel()),
             SizedBox(height: 10),
             buildAbout(),
             SizedBox(height: 5),
@@ -171,7 +156,10 @@ Widget buildApplyBtn() {
             SizedBox(height: 5),
             buildText5(),
             SizedBox(height: 10),
-            buildApplyBtn(),
+            context.read(jobProvider).isFromJobs
+                ? buildApplyBtn()
+                : buildAppliedCard(),
+            SizedBox(height: 15),
           ],
         ),
       ),

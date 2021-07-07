@@ -1,12 +1,9 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:student_worker/filterDialog.dart';
+import 'package:student_worker/applications/successDialog.dart';
 
 class JobConfirm extends StatefulWidget {
-  final void Function() findMoreJobs;
-
-  JobConfirm(this.findMoreJobs);
 
   @override
   _JobConfirmstate createState() {
@@ -52,7 +49,7 @@ class _JobConfirmstate extends State<JobConfirm> {
             onPressed: () {
               showDialog(
                   context: context,
-                  builder: (_) => ApplicationSuccess(widget.findMoreJobs));
+                  builder: (_) => ApplicationSuccess());
             },
             child: Text('Confirm'),
           ),
@@ -162,93 +159,9 @@ class _JobConfirmstate extends State<JobConfirm> {
       ),
     );
   }
-
-  void onNavItemTap(int i) {
-    // Add a switch case statement here to perfom
-    // some action for a perticular item
-    setState(() {
-      currentNavIndex = i;
-    });
-  }
-
-/*Widget buildText3() {
-    return Text(
-      '1. Prepare and develop tools'
-      '\n \n2. Lead the entire student team'
-      '\n \n3. Utilize backend stuff'
-      '\n \n4. Design and code learning',
-      style: TextStyle(
-        fontSize: 16,
-        color: Colors.black87,
-      ),
-    );
-  }*/
-
-/*Widget buildText4() {
-    return Text(
-      'Who can apply',
-      style: TextStyle(
-        fontSize: 17,
-        color: Colors.black,
-        fontWeight: FontWeight.bold,
-      ),
-    );
-  }
-
-Widget buildText5() {
-    return Text(
-      'Candidates who:'
-      '\n \n1. Available to work for duration of 3months'
-      '\n \n2. Can resume work immediately'
-      '\n \n3. Have relevant skills and interests'
-      '\n \n4. Ready to learn',
-      style: TextStyle(
-        fontSize: 16,
-        color: Colors.black87,
-      ),
-    );
-  }
-
-Widget buildApplyBtn() {
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 25),
-      width: double.infinity,
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          primary: Colors.black87,
-          elevation: 8,
-        ),
-        onPressed: () => print("Login Pressed"),
-        child: Text(
-          'Apply',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
-    );
-  }*/
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        onTap: onNavItemTap,
-        currentIndex: currentNavIndex,
-        items: [
-          BottomNavigationBarItem(
-              icon: Icon(Icons.work_outline), label: 'Jobs'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.person_outlined), label: 'Applications'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.file_copy_outlined), label: 'Resume'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.person_pin), label: 'Profile'),
-        ],
-      ),
       body: SingleChildScrollView(
         physics: AlwaysScrollableScrollPhysics(),
         padding: EdgeInsets.symmetric(
