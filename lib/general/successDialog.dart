@@ -4,6 +4,15 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:student_worker/jobs/jobProvider.dart';
 
 class ApplicationSuccess extends StatelessWidget {
+  final String message, actionTitle;
+  final void Function() action;
+
+  ApplicationSuccess({
+    required this.message,
+    required this.actionTitle,
+    required this.action,
+  });
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -28,7 +37,7 @@ class ApplicationSuccess extends StatelessWidget {
               Container(height: 40, color: Colors.grey.withOpacity(.3)),
               SizedBox(height: 30),
               Text(
-                'Your application has been submitted!',
+                message,
                 textAlign: TextAlign.center,
               ),
               SizedBox(height: 20),
@@ -36,8 +45,8 @@ class ApplicationSuccess extends StatelessWidget {
                 style: OutlinedButton.styleFrom(
                     // side: BorderSide(width: 1),
                     ),
-                onPressed: context.read(jobProvider).onFindMoreJobsTap,
-                child: Text('Find more jobs'),
+                onPressed: action,
+                child: Text(actionTitle),
               ),
               SizedBox(height: 20),
             ],

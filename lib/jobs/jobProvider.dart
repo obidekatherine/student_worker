@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:student_worker/applications/applications.dart';
-import 'package:student_worker/global.dart';
+import 'package:student_worker/general/global.dart';
+import 'package:student_worker/general/successDialog.dart';
 import 'package:student_worker/jobs/job.dart';
 import 'package:student_worker/jobs/jobMain.dart';
 
@@ -53,5 +54,14 @@ class JobProvider extends ChangeNotifier {
   void onApplyTap() => navigator!.pushNamed(jobConfirm);
 
   void onFindMoreJobsTap() =>
-      navigator!.pushNamedAndRemoveUntil(baseWidget, (route) => false);
+      navigator!.pushNamedAndRemoveUntil(studentBaseWidget, (route) => false);
+
+  void onConfirmApplication() {
+    showDialog(
+        context: navigator!.context,
+        builder: (_) => ApplicationSuccess(
+            message: 'Your application has been submitted!',
+            actionTitle: 'Find more jobs',
+            action: onFindMoreJobsTap));
+  }
 }

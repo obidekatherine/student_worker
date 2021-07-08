@@ -2,22 +2,21 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:student_worker/general/my_text_field.dart';
 
-import '../sp.dart';
-import 'resume_provider.dart';
-import 'resumepage1.dart';
-import 'resumepage3.dart';
+import '../general/sp.dart';
+import 'employer_provider.dart';
 
-class ResumePage2 extends StatefulWidget {
+class CreateEmployerAcct2 extends StatefulWidget {
   @override
   _ResumePage2State createState() => _ResumePage2State();
 }
 
-class _ResumePage2State extends State<ResumePage2> {
+class _ResumePage2State extends State<CreateEmployerAcct2> {
   @override
   void initState() {
     super.initState();
-    context.read(resumeProvider).initPage2Controllers();
+    context.read(employerProvider).initPage2Controllers();
   }
 
   @override
@@ -29,7 +28,7 @@ class _ResumePage2State extends State<ResumePage2> {
           elevation: 0,
           centerTitle: true,
           title: Text(
-            'Create Your Resume',
+            'Create Your Account',
             style: GoogleFonts.roboto(
               textStyle: TextStyle(
                 fontWeight: FontWeight.w500,
@@ -43,12 +42,13 @@ class _ResumePage2State extends State<ResumePage2> {
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: ListView(
+            physics: ClampingScrollPhysics(),
             children: <Widget>[
               SizedBox(
                 height: 24.0,
               ),
               Text(
-                'Education',
+                'Organisation Details',
                 style: GoogleFonts.roboto(
                     textStyle: TextStyle(
                   fontWeight: FontWeight.w500,
@@ -61,7 +61,7 @@ class _ResumePage2State extends State<ResumePage2> {
                 height: 16.0,
               ),
               Text(
-                'University',
+                'Name',
                 style: GoogleFonts.roboto(
                     textStyle: TextStyle(
                   fontWeight: FontWeight.w400,
@@ -73,16 +73,40 @@ class _ResumePage2State extends State<ResumePage2> {
                 height: 3.0,
               ),
               MyTextField(
-                  onChanged: (value) =>
-                      context.read(resumeProvider).onChanged(schoolTag, value),
-                  controller: context.read(resumeProvider).schoolController,
-                  hintText: "University Of Lagos",
+                  onChanged: (value) => context
+                      .read(employerProvider)
+                      .onChanged(employerCompanyNameKey, value),
+                  controller:
+                      context.read(employerProvider).companyNameController,
+                  hintText: "Organisation name",
                   keyboardType: TextInputType.name),
               SizedBox(
                 height: 16.0,
               ),
               Text(
-                'Course Of Study',
+                'Description',
+                style: GoogleFonts.roboto(
+                    textStyle: TextStyle(
+                  fontWeight: FontWeight.w400,
+                  fontSize: 16,
+                  color: Color(0xff000000),
+                )),
+              ),
+              SizedBox(height: 3.0),
+              MyTextField(
+                  maxLines: 5,
+                  onChanged: (value) => context
+                      .read(employerProvider)
+                      .onChanged(employerDescriptionKey, value),
+                  controller:
+                      context.read(employerProvider).descriptionController,
+                  hintText: 'A brief description about your company',
+                  keyboardType: TextInputType.name),
+              SizedBox(
+                height: 16.0,
+              ),
+              Text(
+                'Address',
                 style: GoogleFonts.roboto(
                     textStyle: TextStyle(
                   fontWeight: FontWeight.w400,
@@ -94,81 +118,37 @@ class _ResumePage2State extends State<ResumePage2> {
                 height: 3.0,
               ),
               MyTextField(
-                  onChanged: (value) =>
-                      context.read(resumeProvider).onChanged(courseTag, value),
-                  controller: context.read(resumeProvider).courseController,
-                  hintText: 'Mechanical Engineering',
+                  onChanged: (value) => context
+                      .read(employerProvider)
+                      .onChanged(employerAddressKey, value),
+                  controller: context.read(employerProvider).addressController,
+                  hintText: '36 Adeola Odeku Street Victorial Island 100246',
                   keyboardType: TextInputType.name),
-              SizedBox(
-                height: 16.0,
+              SizedBox(height: 16),
+              Text(
+                'State',
+                style: GoogleFonts.roboto(
+                    textStyle: TextStyle(
+                  fontWeight: FontWeight.w400,
+                  fontSize: 16,
+                  color: Color(0xff000000),
+                )),
               ),
-              Row(
-                children: [
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('Start Year',
-                            style: GoogleFonts.roboto(
-                                textStyle: TextStyle(
-                              fontWeight: FontWeight.w400,
-                              fontSize: 16,
-                              color: Color(0xff000000),
-                            ))),
-                        SizedBox(
-                          height: 3,
-                        ),
-                        MyTextField(
-                            onChanged: (value) => context
-                                .read(resumeProvider)
-                                .onChanged(startYearTag, value),
-                            controller: context
-                                .read(resumeProvider)
-                                .startYearController,
-                            hintText: '2019',
-                            keyboardType: TextInputType.text),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    width: 20.0,
-                  ),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('End Year',
-                            style: GoogleFonts.roboto(
-                                textStyle: TextStyle(
-                              fontWeight: FontWeight.w400,
-                              fontSize: 16,
-                              color: Color(0xff000000),
-                            ))),
-                        SizedBox(
-                          height: 3.0,
-                        ),
-                        MyTextField(
-                            onChanged: (value) => context
-                                .read(resumeProvider)
-                                .onChanged(endYearTag, value),
-                            controller:
-                                context.read(resumeProvider).endYearController,
-                            hintText: '2022',
-                            keyboardType: TextInputType.number),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 74,
-              ),
+              SizedBox(height: 3.0),
+              MyTextField(
+                  onChanged: (value) => context
+                      .read(employerProvider)
+                      .onChanged(employerCurrentStateKey, value),
+                  controller: context.read(employerProvider).stateController,
+                  hintText: 'Lagos',
+                  keyboardType: TextInputType.name),
+              SizedBox(height: 24),
               Row(
                 children: [
                   Expanded(
                     flex: 3,
                     child: ElevatedButton(
-                      onPressed: context.read(resumeProvider).previousPage,
+                      onPressed: context.read(employerProvider).previousPage,
                       child: Text(
                         "Previous",
                         style: GoogleFonts.roboto(
@@ -185,17 +165,20 @@ class _ResumePage2State extends State<ResumePage2> {
                       ),
                     ),
                   ),
-                  Spacer(flex: 2),
+                  Spacer(
+                    flex: 2,
+                  ),
                   Expanded(
                     flex: 3,
                     child: ElevatedButton(
-                      onPressed: context.read(resumeProvider).moveToPage3,
+                      onPressed: context.read(employerProvider).moveToPostJob,
                       child: Text(
-                        "Next",
+                        "Submit",
                         style: GoogleFonts.roboto(
                             textStyle: TextStyle(
                           fontWeight: FontWeight.w400,
                           fontSize: 18,
+                          letterSpacing: 2,
                           color: Color(0xffFFFFFF),
                         )),
                       ),

@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'global.dart';
+import 'general/global.dart';
 
 void main() {
   runApp(ProviderScope(child: StudentWorker()));

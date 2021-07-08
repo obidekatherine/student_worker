@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:student_worker/global.dart';
-import 'package:student_worker/sp.dart';
+import 'package:student_worker/general/global.dart';
+import 'package:student_worker/general/sp.dart';
 
 final resumeProvider = ChangeNotifierProvider((ref) => ResumeProvider());
 
@@ -26,35 +26,39 @@ class ResumeProvider extends ChangeNotifier {
   var skill3Controller = TextEditingController();
 
   void initPage1Controllers() {
-    firstnameController.text = SP.getString(firstnameTag) ?? '';
-    lastnameController.text = SP.getString(lastnameTag) ?? '';
-    countryCodeController.text = SP.getString(countryCodeTag) ?? '';
-    mobileNumberController.text = SP.getString(mobileNumberTag) ?? '';
-    currentStateController.text = SP.getString(currentStateTag) ?? '';
-    cityController.text = SP.getString(cityTag) ?? '';
+    firstnameController.text = SP.getString(studentFirstnameKey) ?? '';
+    lastnameController.text = SP.getString(studentLastnameKey) ?? '';
+    countryCodeController.text = SP.getString(studentCountryCodeKey) ?? '';
+    mobileNumberController.text = SP.getString(studentMobileNumberKey) ?? '';
+    currentStateController.text = SP.getString(studentCurrentStateKey) ?? '';
+    cityController.text = SP.getString(studentCityKey) ?? '';
   }
 
   void initPage2Controllers() {
-    schoolController.text = SP.getString(schoolTag) ?? '';
-    courseController.text = SP.getString(courseTag) ?? '';
-    startYearController.text = SP.getString(startYearTag) ?? '';
-    endYearController.text = SP.getString(endYearTag) ?? '';
+    schoolController.text = SP.getString(studentSchoolKey) ?? '';
+    courseController.text = SP.getString(studentCourseKey) ?? '';
+    startYearController.text = SP.getString(studentStartYearKey) ?? '';
+    endYearController.text = SP.getString(studentEndYearKey) ?? '';
   }
 
   void initPage3Controllers() {
-    skill1Controller.text = SP.getString(skill1Tag) ?? '';
-    skill2Controller.text = SP.getString(skill2Tag) ?? '';
-    skill3Controller.text = SP.getString(skill3Tag) ?? '';
+    skill1Controller.text = SP.getString(studentSkill1Key) ?? '';
+    skill2Controller.text = SP.getString(studentSkill2Key) ?? '';
+    skill3Controller.text = SP.getString(studentkill3Key) ?? '';
   }
 
-  void onChanged(key, value) => SP.setString(key, value);
+  void onChanged(key, value) {
+    print('$key, $value');
+    SP.setString(key, value);
+  }
 
   void previousPage() => navigator!.pop();
 
   void moveToBaseWidget() {
-    SP.setBool(hasCompletedProfileTag, true);
-    SP.setBool(loggedInTag, true); // TODO: remove this line and put it in the login logic
-    navigator!.pushNamedAndRemoveUntil(baseWidget, (route) => false);
+    SP.setBool(hasCompletedResumeKey, true);
+    SP.setBool(loggedInTag,
+        true); // TODO: remove this line and put it in the login logic
+    navigator!.pushNamedAndRemoveUntil(studentBaseWidget, (route) => false);
   }
 
   void movetToPage2() => navigator!.pushNamed(resumePage2);
@@ -64,6 +68,20 @@ class ResumeProvider extends ChangeNotifier {
   @override
   void dispose() {
     super.dispose();
-    // TODO: Dispose all the text editing controllers
+    firstnameController.dispose();
+    lastnameController.dispose();
+    countryCodeController.dispose();
+    mobileNumberController.dispose();
+    currentStateController.dispose();
+    cityController.dispose();
+    //
+    schoolController.dispose();
+    courseController.dispose();
+    startYearController.dispose();
+    endYearController.dispose();
+    //
+    skill1Controller.dispose();
+    skill2Controller.dispose();
+    skill3Controller.dispose();
   }
 }

@@ -55,8 +55,8 @@ class _JobMainstate extends State<JobMain> {
                 contentPadding: EdgeInsets.all(10),
                 suffixIcon: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      // primary: Colors.black45,
-                    ),
+                        // primary: Colors.black45,
+                        ),
                     onPressed: context.read(jobProvider).search,
                     child: Icon(Icons.search, color: Colors.white)),
                 hintText: 'Title/Keyword/Category',
@@ -76,9 +76,8 @@ class _JobMainstate extends State<JobMain> {
       fit: StackFit.expand,
       children: [
         Container(
-          constraints: BoxConstraints.expand(),
-            child: Image.asset('assets/Rectangle 27.png',
-                fit: BoxFit.fill)),
+            constraints: BoxConstraints.expand(),
+            child: Image.asset('assets/Rectangle 27.png', fit: BoxFit.fill)),
         Padding(
           padding: const EdgeInsets.only(bottom: 30.0),
           child: Center(
@@ -118,10 +117,11 @@ class _JobMainstate extends State<JobMain> {
           scrollDirection: Axis.horizontal,
           child: Row(
             children: <Widget>[
-              jobCategory('Retail'),
-              jobCategory('Marketing'),
-              jobCategory('Catering'),
-              jobCategory('Careers'),
+              jobCategory('Retail', icon: Icon(Icons.person_outline)),
+              jobCategory('Marketing',
+                  icon: Icon(Icons.campaign_outlined)),
+              jobCategory('Catering', icon: Icon(Icons.baby_changing_station)),
+              jobCategory('Careers', icon: Icon(Icons.work_outline)),
             ],
           ),
         ),
@@ -129,21 +129,22 @@ class _JobMainstate extends State<JobMain> {
     );
   }
 
-  Widget jobCategory(String category) {
+  Widget jobCategory(String category, {Widget? icon}) {
     return SizedBox(
       width: 100,
       height: 100,
       child: Card(
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 12.0),
+          padding: const EdgeInsets.symmetric(vertical: 20.0),
           child: Column(
             // mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              CircleAvatar(
-                backgroundColor: Colors.grey,
-              ),
+              icon ??
+                  CircleAvatar(
+                    backgroundColor: Colors.grey,
+                  ),
               Text(category),
             ],
           ),
@@ -205,7 +206,7 @@ class _JobMainstate extends State<JobMain> {
           stretch: true,
           backgroundColor: Colors.grey,
           expandedHeight: 180.0,
-          pinned: true,// context.read(jobProvider).pinned,
+          pinned: true, // context.read(jobProvider).pinned,
           snap: false, // context.read(jobProvider).snap,
           floating: false, //context.read(jobProvider).floating,
           flexibleSpace: FlexibleSpaceBar(

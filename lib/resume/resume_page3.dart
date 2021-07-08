@@ -1,13 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:student_worker/baseWidget.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:student_worker/general/my_text_field.dart';
 
-import '../sp.dart';
+import '../general/sp.dart';
 import 'resume_provider.dart';
-import 'resumepage2.dart';
-import 'resumepage1.dart';
 
 class ResumePage3 extends StatefulWidget {
   @override
@@ -76,7 +74,7 @@ class _ResumePage2State extends State<ResumePage3> {
               MyTextField(
                   onChanged: (value) => context
                       .read(resumeProvider)
-                      .onChanged(skill1Tag, value),
+                      .onChanged(studentSkill1Key, value),
                   controller: context.read(resumeProvider).skill1Controller,
                   hintText: "skill1",
                   keyboardType: TextInputType.name),
@@ -98,7 +96,7 @@ class _ResumePage2State extends State<ResumePage3> {
               MyTextField(
                   onChanged: (value) => context
                       .read(resumeProvider)
-                      .onChanged(skill2Tag, value),
+                      .onChanged(studentSkill2Key, value),
                   controller: context.read(resumeProvider).skill2Controller,
                   hintText: 'Communication skills',
                   keyboardType: TextInputType.name),
@@ -120,7 +118,7 @@ class _ResumePage2State extends State<ResumePage3> {
               MyTextField(
                   onChanged: (value) => context
                       .read(resumeProvider)
-                      .onChanged(skill3Tag, value),
+                      .onChanged(studentkill3Key, value),
                   controller: context.read(resumeProvider).skill3Controller,
                   hintText: 'Teamwork',
                   keyboardType: TextInputType.name),

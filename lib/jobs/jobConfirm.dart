@@ -1,10 +1,12 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:student_worker/applications/successDialog.dart';
+import 'package:student_worker/general/successDialog.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import 'jobProvider.dart';
 
 class JobConfirm extends StatefulWidget {
-
   @override
   _JobConfirmstate createState() {
     return _JobConfirmstate();
@@ -46,11 +48,7 @@ class _JobConfirmstate extends State<JobConfirm> {
             ),
           ),
           ElevatedButton(
-            onPressed: () {
-              showDialog(
-                  context: context,
-                  builder: (_) => ApplicationSuccess());
-            },
+            onPressed: context.read(jobProvider).onConfirmApplication,
             child: Text('Confirm'),
           ),
         ],
@@ -159,6 +157,7 @@ class _JobConfirmstate extends State<JobConfirm> {
       ),
     );
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:student_worker/global.dart';
+import 'package:student_worker/general/global.dart';
 
 final onBoardingProvider =
     ChangeNotifierProvider.autoDispose((ref) => OnBoardingProvider());
@@ -31,6 +31,6 @@ class OnBoardingProvider extends ChangeNotifier {
       currentPage = 1;
       notifyListeners();
     } else
-      navigator!.pushReplacementNamed(resumePage1);
+      navigator!.pushReplacementNamed(identifyUser);
   }
 }

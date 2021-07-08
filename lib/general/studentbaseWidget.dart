@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:student_worker/jobs/jobProvider.dart';
 
-class BaseWidget extends StatelessWidget {
+class StudentBaseWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer(

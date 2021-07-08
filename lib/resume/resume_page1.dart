@@ -2,10 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:student_worker/general/my_text_field.dart';
 import 'package:student_worker/resume/resume_provider.dart';
 
-import '../sp.dart';
-import 'resumepage2.dart';
+import '../general/sp.dart';
 
 class ResumePage1 extends StatefulWidget {
   @override
@@ -69,7 +69,7 @@ class _ResumePage1State extends State<ResumePage1> {
               ),
               MyTextField(
                 onChanged: (value) =>
-                    context.read(resumeProvider).onChanged(firstnameTag, value),
+                    context.read(resumeProvider).onChanged(studentFirstnameKey, value),
                 controller: context.read(resumeProvider).firstnameController,
                 keyboardType: TextInputType.name,
                 hintText: 'Ayo',
@@ -92,7 +92,7 @@ class _ResumePage1State extends State<ResumePage1> {
               MyTextField(
                   onChanged: (value) => context
                       .read(resumeProvider)
-                      .onChanged(lastnameTag, value),
+                      .onChanged(studentLastnameKey, value),
                   controller: context.read(resumeProvider).lastnameController,
                   hintText: 'David',
                   keyboardType: TextInputType.name),
@@ -117,7 +117,7 @@ class _ResumePage1State extends State<ResumePage1> {
                     child: MyTextField(
                       onChanged: (value) => context
                           .read(resumeProvider)
-                          .onChanged(countryCodeTag, value),
+                          .onChanged(studentCountryCodeKey, value),
                       controller:
                           context.read(resumeProvider).countryCodeController,
                       readOnly: true,
@@ -134,7 +134,7 @@ class _ResumePage1State extends State<ResumePage1> {
                     child: MyTextField(
                         onChanged: (value) => context
                             .read(resumeProvider)
-                            .onChanged(mobileNumberTag, value),
+                            .onChanged(studentMobileNumberKey, value),
                         controller:
                             context.read(resumeProvider).mobileNumberController,
                         hintText: '8074000011',
@@ -164,7 +164,7 @@ class _ResumePage1State extends State<ResumePage1> {
                         MyTextField(
                           onChanged: (value) => context
                               .read(resumeProvider)
-                              .onChanged(currentStateTag, value),
+                              .onChanged(studentCurrentStateKey, value),
                           controller: context
                               .read(resumeProvider)
                               .currentStateController,
@@ -195,7 +195,7 @@ class _ResumePage1State extends State<ResumePage1> {
                         MyTextField(
                           onChanged: (value) => context
                               .read(resumeProvider)
-                              .onChanged(cityTag, value),
+                              .onChanged(studentCityKey, value),
                           controller:
                               context.read(resumeProvider).cityController,
                           hintText: 'Apapa',
@@ -234,36 +234,3 @@ class _ResumePage1State extends State<ResumePage1> {
   }
 }
 
-// this widget holds all field properties for this form
-class MyTextField extends StatelessWidget {
-  final String hintText;
-  final TextInputType keyboardType;
-  final void Function(String) onChanged;
-  final bool readOnly;
-  final TextEditingController? controller;
-
-  MyTextField({
-    Key? key,
-    this.hintText = '',
-    this.keyboardType = TextInputType.text,
-    required this.onChanged,
-    this.readOnly = false,
-    required this.controller,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return TextFormField(
-      onChanged: onChanged,
-      readOnly: readOnly,
-      decoration: InputDecoration(
-        focusedBorder: OutlineInputBorder(
-            borderSide: const BorderSide(color: Colors.black38, width: 2.0)),
-        border: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.black, width: 5.0)),
-        hintText: hintText,
-      ),
-      keyboardType: TextInputType.text,
-    );
-  }
-}

@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:student_worker/global.dart';
-import 'package:student_worker/sp.dart';
+import 'package:student_worker/employer/review_and_post_job.dart';
+import 'package:student_worker/general/global.dart';
+import 'package:student_worker/general/sp.dart';
 
 final splashProvider = Provider((ref) => SplashProvider());
 
@@ -8,7 +9,7 @@ class SplashProvider {
   void doBackgroundTask() async {
     await SP.init();
     await Future.delayed(Duration(seconds: 3));
-    bool isFirstTime = SP.getBool(firstTimeTag) ?? true;
+    bool isFirstTime = SP.getBool(firstTimeUserKey) ?? true;
     bool isLoggedIn = SP.getBool(loggedInTag) ?? false;
     goToNextPage(isFirstTime, isLoggedIn);
   }
@@ -16,19 +17,21 @@ class SplashProvider {
   void goToNextPage(bool isFirstTime, bool isLoggedIn) {
     if (isFirstTime) {
       navigator!.pushReplacementNamed(onBoarding);
-      SP.setBool(firstTimeTag, false);
+      SP.setBool(firstTimeUserKey, false);
       return;
     }
     if (isLoggedIn) {
-      bool hasCompletedProfile = SP.getBool(hasCompletedProfileTag) ?? false;
-      if (hasCompletedProfile)
-        navigator!.pushReplacementNamed(baseWidget);
+      bool hasCompletedProfile = SP.getBool(hasCompletedResumeKey) ?? false;
+      bool employerHasCreatedAcct =
+          SP.getBool(employerHasCreatedAcctKey) ?? false;
+      bool isStudent = SP.getBool(userIsStudentKey) ?? false;
+      if (hasCompletedProfile || employerHasCreatedAcct)
+        navigator!.pushReplacementNamed(
+            isStudent ? studentBaseWidget : employerBaseWidget);
       else
-        navigator!.pushReplacementNamed(resumePage1);
-      // TODO: change the above code to go to the page where they'll select if they're a student or employer so that they can complete their profile
+        navigator!.pushReplacementNamed(identifyUser);
       return;
     }
-    navigator!.pushReplacementNamed(resumePage1);
-    // TODO: change the above code to go to the page where they'll select if they're a student or employer so that they can login
+    navigator!.pushReplacementNamed(identifyUser); //resumePage1
   }
 }
