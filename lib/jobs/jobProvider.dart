@@ -5,6 +5,8 @@ import 'package:student_worker/global/pages.dart';
 import 'package:student_worker/global/successDialog.dart';
 import 'package:student_worker/jobs/job.dart';
 import 'package:student_worker/jobs/jobMain.dart';
+import 'package:student_worker/profile/student_profile.dart';
+import 'package:student_worker/resume/resume_edit.dart';
 
 final jobProvider = ChangeNotifierProvider((ref) => JobProvider());
 
@@ -36,9 +38,9 @@ class JobProvider extends ChangeNotifier {
       case applications:
         return Applications();
       case resume:
-        return Center(child: Text('Resume'));
+        return ResumeEdit();
       case profile:
-        return Center(child: Text('Profile'));
+        return StudentProfile();
       default:
         return Center(child: Text('Unknwon'));
     }

@@ -2,94 +2,75 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class Profile extends StatefulWidget {
-  const Profile({Key? key}) : super(key: key);
+class StudentProfile extends StatefulWidget {
+  const StudentProfile({Key? key}) : super(key: key);
 
   @override
-  _ProfileState createState() => _ProfileState();
+  _StudentProfileState createState() => _StudentProfileState();
 }
 
-class _ProfileState extends State<Profile> {
+class _StudentProfileState extends State<StudentProfile> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: Color(0xffE5E5E5),
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 70),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    CircleAvatar(
-                      backgroundColor: Color(0xff341F97),
-                      child: Text(
-                        'A',
-                        style: GoogleFonts.roboto(
-                            textStyle: TextStyle(
-                          fontWeight: FontWeight.w400,
-                          fontSize: 17,
-                          color: Color(0xffFFFFF9),
-                        )),
-                      ),
-                      radius: 26,
-                    ),
-                    SizedBox(
-                      height: 12,
-                    ),
-                    Text(
-                      'Ayo David',
-                      style: GoogleFonts.roboto(
-                          textStyle: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 15,
-                        color: Color(0xff000000),
-                      )),
-                    ),
-                    SizedBox(
-                      height: 4,
-                    ),
-                    Text(
-                      "ayodavid123@gmail.com",
+    return Scaffold(
+      backgroundColor: Color(0xffE5E5E5),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 70),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  CircleAvatar(
+                    backgroundColor: Color(0xff341F97),
+                    child: Text(
+                      'A',
                       style: GoogleFonts.roboto(
                           textStyle: TextStyle(
                         fontWeight: FontWeight.w400,
-                        fontSize: 13,
-                        color: Color(0xff000000),
+                        fontSize: 17,
+                        color: Color(0xffFFFFF9),
                       )),
                     ),
-                    SizedBox(
-                      height: 19,
-                    ),
-                  ],
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    GestureDetector(
-                      
-                      child: Text(
-                        'Change Email',
-                        textAlign: TextAlign.start,
-                        style: GoogleFonts.roboto(
-                            textStyle: TextStyle(
-                          fontWeight: FontWeight.w400,
-                          fontSize: 15,
-                          color: Color(0xff000000),
-                        )),
-                      ),
-                    ),
-                    Divider(
-                      height: 1,
-                      color: Color(0xff341F97),
-                    ),
-                    SizedBox(
-                      height: 24,
-                    ),
-                    Text(
-                      'Change Password',
+                    radius: 26,
+                  ),
+                  SizedBox(
+                    height: 12,
+                  ),
+                  Text(
+                    'Ayo David',
+                    style: GoogleFonts.roboto(
+                        textStyle: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 15,
+                      color: Color(0xff000000),
+                    )),
+                  ),
+                  SizedBox(
+                    height: 4,
+                  ),
+                  Text(
+                    "ayodavid123@gmail.com",
+                    style: GoogleFonts.roboto(
+                        textStyle: TextStyle(
+                      fontWeight: FontWeight.w400,
+                      fontSize: 13,
+                      color: Color(0xff000000),
+                    )),
+                  ),
+                  SizedBox(
+                    height: 19,
+                  ),
+                ],
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  GestureDetector(
+                    
+                    child: Text(
+                      'Change Email',
                       textAlign: TextAlign.start,
                       style: GoogleFonts.roboto(
                           textStyle: TextStyle(
@@ -98,65 +79,82 @@ class _ProfileState extends State<Profile> {
                         color: Color(0xff000000),
                       )),
                     ),
-                    Divider(
-                      height: 1,
-                      color: Color(0xff341F97),
-                    ),
-                    SizedBox(
-                      height: 24,
-                    ),
-                    Text(
-                      'Settings',
-                      textAlign: TextAlign.start,
-                      style: GoogleFonts.roboto(
-                          textStyle: TextStyle(
-                        fontWeight: FontWeight.w400,
-                        fontSize: 15,
-                        color: Color(0xff000000),
-                      )),
-                    ),
-                    Divider(
-                      height: 1,
-                      color: Color(0xff341F97),
-                    ),
-                    SizedBox(
-                      height: 24,
-                    ),
-                    Text(
-                      'Help',
-                      textAlign: TextAlign.start,
-                      style: GoogleFonts.roboto(
-                          textStyle: TextStyle(
-                        fontWeight: FontWeight.w400,
-                        fontSize: 15,
-                        color: Color(0xff000000),
-                      )),
-                    ),
-                    Divider(
-                      height: 1,
-                      color: Color(0xff341F97),
-                    ),
-                    SizedBox(
-                      height: 24,
-                    ),
-                    Text(
-                      'Logout',
-                      textAlign: TextAlign.start,
-                      style: GoogleFonts.roboto(
-                          textStyle: TextStyle(
-                        fontWeight: FontWeight.w400,
-                        fontSize: 15,
-                        color: Color(0xff000000),
-                      )),
-                    ),
-                    Divider(
-                      height: 1,
-                      color: Color(0xff341F97),
-                    ),
-                  ],
-                )
-              ],
-            ),
+                  ),
+                  Divider(
+                    height: 1,
+                    color: Color(0xff341F97),
+                  ),
+                  SizedBox(
+                    height: 24,
+                  ),
+                  Text(
+                    'Change Password',
+                    textAlign: TextAlign.start,
+                    style: GoogleFonts.roboto(
+                        textStyle: TextStyle(
+                      fontWeight: FontWeight.w400,
+                      fontSize: 15,
+                      color: Color(0xff000000),
+                    )),
+                  ),
+                  Divider(
+                    height: 1,
+                    color: Color(0xff341F97),
+                  ),
+                  SizedBox(
+                    height: 24,
+                  ),
+                  Text(
+                    'Settings',
+                    textAlign: TextAlign.start,
+                    style: GoogleFonts.roboto(
+                        textStyle: TextStyle(
+                      fontWeight: FontWeight.w400,
+                      fontSize: 15,
+                      color: Color(0xff000000),
+                    )),
+                  ),
+                  Divider(
+                    height: 1,
+                    color: Color(0xff341F97),
+                  ),
+                  SizedBox(
+                    height: 24,
+                  ),
+                  Text(
+                    'Help',
+                    textAlign: TextAlign.start,
+                    style: GoogleFonts.roboto(
+                        textStyle: TextStyle(
+                      fontWeight: FontWeight.w400,
+                      fontSize: 15,
+                      color: Color(0xff000000),
+                    )),
+                  ),
+                  Divider(
+                    height: 1,
+                    color: Color(0xff341F97),
+                  ),
+                  SizedBox(
+                    height: 24,
+                  ),
+                  Text(
+                    'Logout',
+                    textAlign: TextAlign.start,
+                    style: GoogleFonts.roboto(
+                        textStyle: TextStyle(
+                      fontWeight: FontWeight.w400,
+                      fontSize: 15,
+                      color: Color(0xff000000),
+                    )),
+                  ),
+                  Divider(
+                    height: 1,
+                    color: Color(0xff341F97),
+                  ),
+                ],
+              )
+            ],
           ),
         ),
       ),

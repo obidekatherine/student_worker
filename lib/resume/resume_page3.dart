@@ -156,7 +156,7 @@ class _ResumePage2State extends State<ResumePage3> {
                       onPressed:
                           context.read(resumeProvider).moveToBaseWidget,
                       child: Text(
-                        "Next",
+                        "Submit",
                         style: GoogleFonts.roboto(
                             textStyle: TextStyle(
                           fontWeight: FontWeight.w400,

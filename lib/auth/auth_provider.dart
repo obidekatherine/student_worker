@@ -138,8 +138,8 @@ class AuthProvider extends ChangeNotifier {
         Uri.parse('$url/${getEndpoint(action)}'),
         headers: {'Content-Type': 'application/json'},
         body: json.encode({
-          emailKey: emailController.text,
-          passwordKey: passwordController.text,
+          emailKey: emailController.text.trim(),
+          passwordKey: passwordController.text.trim(),
         }),
       );
       Toast.stopLoading();
