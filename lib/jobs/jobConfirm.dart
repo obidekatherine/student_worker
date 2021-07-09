@@ -1,7 +1,4 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:student_worker/general/successDialog.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'jobProvider.dart';

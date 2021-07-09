@@ -10,6 +10,8 @@ class MyTextField extends StatelessWidget {
   final bool obscureText;
   final Widget? suffixIcon;
   final int? maxLines;
+  final String? Function(String?)? validator;
+  final AutovalidateMode? autovalidateMode;
 
   MyTextField({
     Key? key,
@@ -21,11 +23,15 @@ class MyTextField extends StatelessWidget {
     this.obscureText = false,
     this.suffixIcon,
     this.maxLines,
+    this.validator,
+    this.autovalidateMode,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      autovalidateMode: autovalidateMode,
+      validator: validator,
       obscureText: obscureText,
       controller: controller,
       onChanged: onChanged,

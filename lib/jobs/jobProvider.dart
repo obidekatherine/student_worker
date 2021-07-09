@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:student_worker/applications/applications.dart';
-import 'package:student_worker/general/global.dart';
-import 'package:student_worker/general/successDialog.dart';
+import 'package:student_worker/global/pages.dart';
+import 'package:student_worker/global/successDialog.dart';
 import 'package:student_worker/jobs/job.dart';
 import 'package:student_worker/jobs/jobMain.dart';
 

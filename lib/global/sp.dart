@@ -5,6 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 final emailKey = 'email';
 final passwordKey = 'password';
 final userIsStudentKey = 'userIsStudent';
+final tokenKey = 'token';
 
 // student
 final firstTimeUserKey = 'firstTimeUser';
@@ -55,4 +56,6 @@ class SP {
   static String? getString(key) => _sp!.getString(key);
   static double? getDouble(key) => _sp!.getDouble(key);
   static List<String>? getStringList(key) => _sp!.getStringList(key);
+
+  static void clear() => _sp!.clear();
 }

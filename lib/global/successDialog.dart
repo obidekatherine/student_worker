@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import 'package:student_worker/jobs/jobProvider.dart';
 
 class ApplicationSuccess extends StatelessWidget {
   final String message, actionTitle;

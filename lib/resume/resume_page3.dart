@@ -2,9 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:student_worker/general/my_text_field.dart';
+import 'package:student_worker/global/my_text_field.dart';
 
-import '../general/sp.dart';
+import '../global/sp.dart';
 import 'resume_provider.dart';
 
 class ResumePage3 extends StatefulWidget {

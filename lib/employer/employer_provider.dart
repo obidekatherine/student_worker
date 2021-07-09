@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:student_worker/employer/create_job_to_post.dart';
 import 'package:student_worker/employer/main_dashboard.dart';
-import 'package:student_worker/general/global.dart';
-import 'package:student_worker/general/sp.dart';
-import 'package:student_worker/general/successDialog.dart';
+import 'package:student_worker/global/pages.dart';
+import 'package:student_worker/global/sp.dart';
+import 'package:student_worker/global/successDialog.dart';
 
 final employerProvider = ChangeNotifierProvider((ref) => EmployerProvider());
 

@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:student_worker/general/my_text_field.dart';
-import '../general/sp.dart';
+import 'package:student_worker/global/my_text_field.dart';
+import '../global/sp.dart';
 import 'employer_provider.dart';
 
 class CreateEmployerAcct1 extends StatefulWidget {

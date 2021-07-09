@@ -6,7 +6,7 @@ import 'package:student_worker/employer/create_employer_acct2.dart';
 import 'package:student_worker/employer/employer_base_widget.dart';
 import 'package:student_worker/employer/main_dashboard.dart';
 import 'package:student_worker/employer/review_and_post_job.dart';
-import 'package:student_worker/general/studentbaseWidget.dart';
+import 'package:student_worker/global/studentbaseWidget.dart';
 import 'package:student_worker/jobs/jobConfirm.dart';
 import 'package:student_worker/jobs/jobDescriptionMain.dart';
 import 'package:student_worker/onboarding/onboarding_page.dart';

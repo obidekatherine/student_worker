@@ -3,8 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:student_worker/auth/auth_provider.dart';
-import 'package:student_worker/general/my_text_field.dart';
-import 'package:student_worker/general/sp.dart';
+import 'package:student_worker/global/my_text_field.dart';
+import 'package:student_worker/global/sp.dart';
 
 class SignupScreen extends StatefulWidget {
   @override
@@ -14,7 +14,6 @@ class SignupScreen extends StatefulWidget {
 }
 
 class _SignupScreenstate extends State<SignupScreen> {
-
   @override
   void initState() {
     super.initState();
@@ -37,6 +36,8 @@ class _SignupScreenstate extends State<SignupScreen> {
         ),
         SizedBox(height: 3),
         MyTextField(
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          validator: context.read(authProvider).emailValidator,
           hintText: 'danielsilver12@gmail.com',
           keyboardType: TextInputType.emailAddress,
           controller: context.read(authProvider).emailController,
@@ -66,6 +67,8 @@ class _SignupScreenstate extends State<SignupScreen> {
           builder: (_, watch, __) {
             var ap = watch(authProvider);
             return MyTextField(
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              validator: context.read(authProvider).passwordValidator,
               maxLines: 1,
               hintText: 'Machine',
               obscureText: ap.passwordIsHidden,
@@ -129,7 +132,7 @@ class _SignupScreenstate extends State<SignupScreen> {
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF0A674F)),
         ),
-        onPressed: context.read(authProvider).signupUser,
+        onPressed: () => context.read(authProvider).onAuthPressed(AuthAction.signup),
         child: Text(
           'Sign Up',
           style: GoogleFonts.roboto(

@@ -53,6 +53,7 @@ class _IdentifyUserState extends State<IdentifyUser> {
               builder: (_, watch, __) {
                 var ap = watch(authProvider);
                 return RadioListTile<StudentWorker>(
+                  activeColor: Colors.green[900],
                   title: const Text('Student seeking part-time job'),
                   value: StudentWorker.student,
                   groupValue: ap.selected,
@@ -64,6 +65,8 @@ class _IdentifyUserState extends State<IdentifyUser> {
               builder: (_, watch, __) {
                 var ap = watch(authProvider);
                 return RadioListTile<StudentWorker>(
+                  activeColor: Colors.green[900],
+                  selectedTileColor: Colors.green[900],
                   title: const Text('Employer'),
                   value: StudentWorker.employer,
                   groupValue: ap.selected,
@@ -80,6 +83,7 @@ class _IdentifyUserState extends State<IdentifyUser> {
                   opacity: ap.opacity,
                   child: ElevatedButton(
                     onPressed: ap.onContinueClicked,
+                    style: ElevatedButton.styleFrom(primary: Colors.green[900]),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8.0),
                       child: Text('Continue'),

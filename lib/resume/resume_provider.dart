@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:student_worker/general/global.dart';
-import 'package:student_worker/general/sp.dart';
+import 'package:student_worker/global/pages.dart';
+import 'package:student_worker/global/sp.dart';
 
 final resumeProvider = ChangeNotifierProvider((ref) => ResumeProvider());
 

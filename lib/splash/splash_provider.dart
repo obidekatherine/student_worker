@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:student_worker/employer/review_and_post_job.dart';
-import 'package:student_worker/general/global.dart';
-import 'package:student_worker/general/sp.dart';
+import 'package:student_worker/global/pages.dart';
+import 'package:student_worker/global/sp.dart';
 
 final splashProvider = Provider((ref) => SplashProvider());
 
@@ -10,6 +10,7 @@ class SplashProvider {
     await SP.init();
     await Future.delayed(Duration(seconds: 3));
     bool isFirstTime = SP.getBool(firstTimeUserKey) ?? true;
+    // SP.clear(); //TODO: Remove this line of code
     bool isLoggedIn = SP.getBool(loggedInTag) ?? false;
     goToNextPage(isFirstTime, isLoggedIn);
   }
@@ -25,11 +26,13 @@ class SplashProvider {
       bool employerHasCreatedAcct =
           SP.getBool(employerHasCreatedAcctKey) ?? false;
       bool isStudent = SP.getBool(userIsStudentKey) ?? false;
+
       if (hasCompletedProfile || employerHasCreatedAcct)
         navigator!.pushReplacementNamed(
             isStudent ? studentBaseWidget : employerBaseWidget);
       else
-        navigator!.pushReplacementNamed(identifyUser);
+        navigator!.pushReplacementNamed(
+            isStudent ? resumePage1 : createEmployerAcct1);
       return;
     }
     navigator!.pushReplacementNamed(identifyUser); //resumePage1

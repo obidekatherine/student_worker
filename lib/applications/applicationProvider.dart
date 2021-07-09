@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:student_worker/jobs/jobProvider.dart';
 
-import '../general/global.dart';
+import '../global/pages.dart';
 
 final applicationProvider =
     ChangeNotifierProvider.autoDispose((ref) => ApplicationProvider());
