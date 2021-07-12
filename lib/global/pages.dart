@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:student_worker/applications/appliedJobDescription.dart';
 import 'package:student_worker/auth/login.dart';
 import 'package:student_worker/auth/signup.dart';
 import 'package:student_worker/employer/create_employer_acct1.dart';
@@ -25,6 +26,7 @@ final navigator = navigatorKey.currentState;
 final loading = '/';
 final studentBaseWidget = 'baseWidget';
 final jobDescription = 'jobDescription';
+final appliedJobDescription = 'appliedJobDescription';
 final jobConfirm = 'jobConfirm';
 final onBoarding = 'onBoarding';
 final identifyUser = 'identity';
@@ -49,6 +51,7 @@ final Map? pages = <String, Widget Function(BuildContext)?>{
   resumePage3: (_) => ResumePage3(),
   studentBaseWidget: (_) => StudentBaseWidget(),
   jobDescription: (_) => JobDescriptionMain(),
+  appliedJobDescription: (_) => AppliedJobDescription(),
   jobConfirm: (_) => JobConfirm(),
   signup: (_) => SignupScreen(),
   login: (_) => LoginScreen(),

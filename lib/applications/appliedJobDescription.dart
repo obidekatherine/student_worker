@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:student_worker/jobs/job.dart';
+import 'package:student_worker/jobs/jobProvider.dart';
 
-import 'job.dart';
-import 'jobProvider.dart';
-
-class JobDescriptionMain extends StatefulWidget {
+class AppliedJobDescription extends StatefulWidget {
   @override
   _JobDescriptionMainstate createState() {
     return _JobDescriptionMainstate();
   }
 }
 
-class _JobDescriptionMainstate extends State<JobDescriptionMain> {
+class _JobDescriptionMainstate extends State<AppliedJobDescription> {
   Widget buildAbout() {
     return Text(
       'About Company',
@@ -123,7 +122,7 @@ class _JobDescriptionMainstate extends State<JobDescriptionMain> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Apply'),
+        title: Text('Applied'),
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () => Navigator.pop(context),
@@ -137,10 +136,8 @@ class _JobDescriptionMainstate extends State<JobDescriptionMain> {
         padding: EdgeInsets.symmetric(
           horizontal: 16,
         ),
-        child: Consumer(
-          builder: (_, watch, __) {
-            var jp = watch(jobProvider);
-            return Column(
+        child: 
+        Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
@@ -158,12 +155,11 @@ class _JobDescriptionMainstate extends State<JobDescriptionMain> {
                 SizedBox(height: 5),
                 buildText5(),
                 SizedBox(height: 10),
-                buildApplyBtn(),
-                SizedBox(height: 15),
+              
               ],
-            );
-          },
-        ),
+            ),
+          
+        
       ),
     );
   }

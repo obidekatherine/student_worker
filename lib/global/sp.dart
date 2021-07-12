@@ -23,7 +23,7 @@ final studentStartYearKey = 'startYear';
 final studentEndYearKey = 'endYear';
 final studentSkill1Key = 'skill1';
 final studentSkill2Key = 'skill2';
-final studentkill3Key = 'skill3';
+final studentSkill3Key = 'skill3';
 
 // employer
 final employerHasCreatedAcctKey = 'employerHasCreatedAcct';

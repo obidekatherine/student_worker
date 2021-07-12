@@ -12,24 +12,32 @@ class MyTextField extends StatelessWidget {
   final int? maxLines;
   final String? Function(String?)? validator;
   final AutovalidateMode? autovalidateMode;
+  final TextInputAction action;
+  final FocusNode? focusNode;
+  final void Function()? onEditingComplete;
 
   MyTextField({
     Key? key,
     this.hintText = '',
-    this.keyboardType = TextInputType.text,
+    required this.keyboardType,
+    required this.action,
     required this.onChanged,
     this.readOnly = false,
     required this.controller,
     this.obscureText = false,
     this.suffixIcon,
     this.maxLines,
-    this.validator,
-    this.autovalidateMode,
+     this.validator,
+     this.autovalidateMode,
+      this.focusNode,
+      this.onEditingComplete
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onEditingComplete: onEditingComplete,
+      // textInputAction: action,
       autovalidateMode: autovalidateMode,
       validator: validator,
       obscureText: obscureText,

@@ -18,7 +18,7 @@ class AppliedJobWidget extends StatelessWidget {
         children: [
           Text(job.title, style: TextStyle(fontWeight: FontWeight.bold)),
           SizedBox(height: 10),
-          Text(job.company),
+          Text(job.companyName),
           SizedBox(height: 15),
           Row(
             children: [
@@ -35,11 +35,12 @@ class AppliedJobWidget extends StatelessWidget {
           Row(children: [
             IconLabel(
                 icon: Icon(Icons.people_outline_outlined),
-                label: job.numberOfApplicants.toString()),
+                label: job.numberOfApplicants().toString()),
             SizedBox(width: 10),
             IconLabel(
                 icon: Icon(Icons.calendar_today), label: 'You applied today'),
           ]),
+          Divider(thickness: 2),
         ],
       ),
     );

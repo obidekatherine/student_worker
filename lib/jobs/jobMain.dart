@@ -46,6 +46,7 @@ class _JobMainstate extends State<JobMain> {
             decoration: BoxDecoration(
                 color: Colors.white, borderRadius: BorderRadius.circular(5)),
             child: TextFormField(
+              controller: context.read(jobProvider).searchController,
               keyboardType: TextInputType.text,
               style: TextStyle(
                 color: Colors.black87,
@@ -59,7 +60,7 @@ class _JobMainstate extends State<JobMain> {
                         ),
                     onPressed: context.read(jobProvider).search,
                     child: Icon(Icons.search, color: Colors.white)),
-                hintText: 'Title/Keyword/Category',
+                hintText: 'Title',
                 hintStyle: TextStyle(
                   color: Colors.black38,
                 ),
@@ -118,8 +119,7 @@ class _JobMainstate extends State<JobMain> {
           child: Row(
             children: <Widget>[
               jobCategory('Retail', icon: Icon(Icons.person_outline)),
-              jobCategory('Marketing',
-                  icon: Icon(Icons.campaign_outlined)),
+              jobCategory('Marketing', icon: Icon(Icons.campaign_outlined)),
               jobCategory('Catering', icon: Icon(Icons.baby_changing_station)),
               jobCategory('Careers', icon: Icon(Icons.work_outline)),
             ],
@@ -157,13 +157,18 @@ class _JobMainstate extends State<JobMain> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(
-          '12,000 Jobs',
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 15,
-            fontWeight: FontWeight.bold,
-          ),
+        Consumer(
+          builder: (_, watch, __) {
+            var jp = watch(jobProvider);
+            return Text(
+              jp.loading ? '...' : '${jp.jobList.length} total jobs',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
+              ),
+            );
+          },
         ),
         Row(
           mainAxisSize: MainAxisSize.min,
@@ -197,54 +202,88 @@ class _JobMainstate extends State<JobMain> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    if (context.read(jobProvider).jobList.isEmpty)
+      Future.delayed(
+          Duration(milliseconds: 2), context.read(jobProvider).fetchJobs);
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
-      // physics: ClampingScrollPhysics(),
-      // shrinkWrap: true,
-      slivers: [
-        SliverAppBar(
-          stretch: true,
-          backgroundColor: Colors.grey,
-          expandedHeight: 180.0,
-          pinned: true, // context.read(jobProvider).pinned,
-          snap: false, // context.read(jobProvider).snap,
-          floating: false, //context.read(jobProvider).floating,
-          flexibleSpace: FlexibleSpaceBar(
-            title: Text('Student Worker'),
-            background: buildSearchBackground(),
-          ),
-        ),
-        SliverToBoxAdapter(
-          child: Column(mainAxisSize: MainAxisSize.min, children: [
-            buildJobCategory(),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: buildTotalJobCount(),
+    return Consumer(
+      builder: (_, watch, __) {
+        var jp = watch(jobProvider);
+        return NestedScrollView(
+          headerSliverBuilder:
+              (BuildContext context, bool innerBoxIsScrolled) => [
+            SliverAppBar(
+              stretch: true,
+              backgroundColor: Colors.black,
+              expandedHeight: 180.0,
+              pinned: true, // context.read(jobProvider).pinned,
+              snap: false, // context.read(jobProvider).snap,
+              floating: false, //context.read(jobProvider).floating,
+              flexibleSpace: FlexibleSpaceBar(
+                title: Text('Student Worker'),
+                background: buildSearchBackground(),
+              ),
             ),
-          ]),
-        ),
-        SliverList(
-          delegate: SliverChildBuilderDelegate(
-            (BuildContext context, int index) {
-              return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Divider(),
-                    InkWell(
-                      onTap: () =>
-                          context.read(jobProvider).onJobTap(JobModel()),
-                      child: JobWidget(JobModel()),
-                    ),
-                  ],
+          ],
+          body: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: ListView(
+              shrinkWrap: true,
+              physics: ClampingScrollPhysics(),
+              children: [
+                buildJobCategory(),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: buildTotalJobCount(),
                 ),
-              );
-            },
-            childCount: 10,
+                jp.loading
+                    ? Center(child: CircularProgressIndicator())
+                    : Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: jp.jobList.map((e) => JobWidget(e)).toList(),
+                      )
+              ],
+            ),
           ),
-        ),
-      ],
+
+          // physics: ClampingScrollPhysics(),
+          // shrinkWrap: true,
+          // slivers: [
+
+          // SliverToBoxAdapter(
+          //   child:
+          // ),
+          // // jp.loading? CircularProgressIndicator() :
+
+          //  SliverList(
+          //   delegate: SliverChildBuilderDelegate(
+          //     (BuildContext context, int index) {
+          //       return Padding(
+          //         padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          //         child: Column(
+          //           mainAxisSize: MainAxisSize.min,
+          //           children: [
+          //             Divider(),
+          //             InkWell(
+          //               onTap: () =>
+          //                   context.read(jobProvider).onJobTap(JobModel()),
+          //               child: JobWidget(JobModel()),
+          //             ),
+          //           ],
+          //         ),
+          //       );
+          //     },
+          //     childCount: 10,
+          //   ),
+          // ),
+          // ],
+        );
+      },
     );
   }
 }

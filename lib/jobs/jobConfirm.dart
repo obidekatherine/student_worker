@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:student_worker/global/sp.dart';
 
 import 'jobProvider.dart';
 
@@ -78,7 +79,8 @@ class _JobConfirmstate extends State<JobConfirm> {
 
   Widget buildText3() {
     return Text(
-      'Ayo David',
+      '${SP.getString(studentFirstnameKey)} '
+      '${SP.getString(studentLastnameKey)}',
       style: TextStyle(
         fontSize: 20,
         color: Colors.black,
@@ -89,9 +91,9 @@ class _JobConfirmstate extends State<JobConfirm> {
 
   Widget buildText4() {
     return Text(
-      'Ayodavid123@gmail.com'
-      '\n\n09012345678'
-      '\n\nApapa, Lagos',
+      '${SP.getString(emailKey)}'
+      '\n\n${SP.getString(studentMobileNumberKey)}'
+      '\n\n${SP.getString(studentCityKey)}, ${SP.getString(studentCurrentStateKey)}',
       style: TextStyle(
         fontSize: 16,
         color: Colors.black87,
@@ -112,7 +114,7 @@ class _JobConfirmstate extends State<JobConfirm> {
 
   Widget buildText6() {
     return Text(
-      'Mechanical Engineering',
+      '${SP.getString(studentCourseKey)}',
       style: TextStyle(
         fontSize: 20,
         color: Colors.black,
@@ -123,8 +125,8 @@ class _JobConfirmstate extends State<JobConfirm> {
 
   Widget buildText7() {
     return Text(
-      'University Of Lagos'
-      '\n\n2019 - 2022',
+      '${SP.getString(studentSchoolKey)}'
+      '\n\n${SP.getString(studentStartYearKey)} - ${SP.getString(studentEndYearKey)}',
       style: TextStyle(
         fontSize: 16,
         color: Colors.black87,
@@ -145,9 +147,9 @@ class _JobConfirmstate extends State<JobConfirm> {
 
   Widget buildText9() {
     return Text(
-      '1. Graphic design'
-      '\n\n2. Communication skill'
-      '\n\n3. Teamwork',
+      '1. ${SP.getString(studentSkill1Key)}'
+      '\n\n2. ${SP.getString(studentSkill2Key)}'
+      '\n\n3. ${SP.getString(studentSkill3Key)}',
       style: TextStyle(
         fontSize: 16,
         color: Colors.black87,

@@ -72,11 +72,18 @@ class _ResumePage2State extends State<ResumePage2> {
                 height: 3.0,
               ),
               MyTextField(
-                  onChanged: (value) =>
-                      context.read(resumeProvider).onChanged(studentSchoolKey, value),
-                  controller: context.read(resumeProvider).schoolController,
-                  hintText: "University Of Lagos",
-                  keyboardType: TextInputType.name),
+                onChanged: (value) => context
+                    .read(resumeProvider)
+                    .onChanged(studentSchoolKey, value),
+                controller: context.read(resumeProvider).schoolController,
+                hintText: "University Of Lagos",
+                keyboardType: TextInputType.name,
+                action: TextInputAction.next,
+                focusNode: context.read(resumeProvider).mobileNumberNode,
+                onEditingComplete: () => context
+                    .read(resumeProvider)
+                    .nextNode(context.read(resumeProvider).stateNode),
+              ),
               SizedBox(
                 height: 16.0,
               ),
@@ -93,11 +100,18 @@ class _ResumePage2State extends State<ResumePage2> {
                 height: 3.0,
               ),
               MyTextField(
-                  onChanged: (value) =>
-                      context.read(resumeProvider).onChanged(studentCourseKey, value),
-                  controller: context.read(resumeProvider).courseController,
-                  hintText: 'Mechanical Engineering',
-                  keyboardType: TextInputType.name),
+                onChanged: (value) => context
+                    .read(resumeProvider)
+                    .onChanged(studentCourseKey, value),
+                controller: context.read(resumeProvider).courseController,
+                hintText: 'Mechanical Engineering',
+                keyboardType: TextInputType.name,
+                focusNode: context.read(resumeProvider).courseNode,
+                onEditingComplete: () => context
+                    .read(resumeProvider)
+                    .nextNode(context.read(resumeProvider).startYearNode),
+                action: TextInputAction.next,
+              ),
               SizedBox(
                 height: 16.0,
               ),
@@ -118,14 +132,20 @@ class _ResumePage2State extends State<ResumePage2> {
                           height: 3,
                         ),
                         MyTextField(
-                            onChanged: (value) => context
-                                .read(resumeProvider)
-                                .onChanged(studentStartYearKey, value),
-                            controller: context
-                                .read(resumeProvider)
-                                .startYearController,
-                            hintText: '2019',
-                            keyboardType: TextInputType.text),
+                          onChanged: (value) => context
+                              .read(resumeProvider)
+                              .onChanged(studentStartYearKey, value),
+                          controller:
+                              context.read(resumeProvider).startYearController,
+                          hintText: '2019',
+                          keyboardType: TextInputType.text,
+                          focusNode: context.read(resumeProvider).startYearNode,
+                          onEditingComplete: () => context
+                              .read(resumeProvider)
+                              .nextNode(
+                                  context.read(resumeProvider).endYearNode),
+                          action: TextInputAction.next,
+                        ),
                       ],
                     ),
                   ),
@@ -147,13 +167,19 @@ class _ResumePage2State extends State<ResumePage2> {
                           height: 3.0,
                         ),
                         MyTextField(
-                            onChanged: (value) => context
-                                .read(resumeProvider)
-                                .onChanged(studentEndYearKey, value),
-                            controller:
-                                context.read(resumeProvider).endYearController,
-                            hintText: '2022',
-                            keyboardType: TextInputType.number),
+                          onChanged: (value) => context
+                              .read(resumeProvider)
+                              .onChanged(studentEndYearKey, value),
+                          controller:
+                              context.read(resumeProvider).endYearController,
+                          hintText: '2022',
+                          keyboardType: TextInputType.number,
+                          focusNode: context.read(resumeProvider).endYearNode,
+                          onEditingComplete: () => context
+                              .read(resumeProvider)
+                              .nextNode(FocusNode()),
+                          action: TextInputAction.next,
+                        ),
                       ],
                     ),
                   ),

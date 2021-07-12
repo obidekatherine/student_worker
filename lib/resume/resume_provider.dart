@@ -25,6 +25,19 @@ class ResumeProvider extends ChangeNotifier {
   var skill2Controller = TextEditingController();
   var skill3Controller = TextEditingController();
 
+  var firstnameNode = FocusNode();
+  var lastnameNode = FocusNode();
+  var mobileNumberNode = FocusNode();
+  var stateNode = FocusNode();
+  var cityNode = FocusNode();
+  var courseNode = FocusNode();
+  var schoolNode = FocusNode();
+  var endYearNode = FocusNode();
+  var startYearNode = FocusNode();
+  var skill1Node = FocusNode();
+  var skill2Node = FocusNode();
+  var skill3Node;
+
   void initPage1Controllers() {
     firstnameController.text = SP.getString(studentFirstnameKey) ?? '';
     lastnameController.text = SP.getString(studentLastnameKey) ?? '';
@@ -44,7 +57,7 @@ class ResumeProvider extends ChangeNotifier {
   void initPage3Controllers() {
     skill1Controller.text = SP.getString(studentSkill1Key) ?? '';
     skill2Controller.text = SP.getString(studentSkill2Key) ?? '';
-    skill3Controller.text = SP.getString(studentkill3Key) ?? '';
+    skill3Controller.text = SP.getString(studentSkill3Key) ?? '';
   }
 
   void onChanged(key, value) {
@@ -84,4 +97,7 @@ class ResumeProvider extends ChangeNotifier {
     skill2Controller.dispose();
     skill3Controller.dispose();
   }
+
+  void nextNode(FocusNode focusNode) =>
+      FocusScope.of(navigator!.context).requestFocus(focusNode);
 }

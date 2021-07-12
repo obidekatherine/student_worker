@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:student_worker/jobs/jobProvider.dart';
 
 class FilterDialog extends StatefulWidget {
   @override
@@ -11,18 +13,6 @@ class _FilterDialogState extends State<FilterDialog> {
   bool isOnsite = false;
   bool hasApplied = false;
 
-  void onLocationChanged(newValue) => setState(() {
-        value = newValue;
-      });
-
-  void onRemoteChanged(newValue) => setState(() {
-        isRemote = newValue;
-      });
-
-  void onOnsiteChanged(newValue) => setState(() {
-        isOnsite = newValue;
-      });
-
   @override
   Widget build(BuildContext context) {
     return
@@ -31,54 +21,57 @@ class _FilterDialogState extends State<FilterDialog> {
         //:
         AlertDialog(
       title: Text('Narrow Your Search'),
-      content: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Row(
+      content: Consumer(
+        builder: (_, watch, __) {
+          var jp = watch(jobProvider);
+          return Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Text('Location:'),
-              SizedBox(width: 10),
-              Card(
-                child: DropdownButton<String>(
-                    onChanged: onLocationChanged,
-                    underline: SizedBox(),
-                    value: value,
-                    items: ['All', 'Lagos', 'Abuja', 'Osun', 'Sambisa Forest']
-                        .map((e) => DropdownMenuItem<String>(
-                              child: Text(e),
-                              value: e,
-                            ))
-                        .toList()),
-              )
-            ],
-          ),
-          SizedBox(height: 15),
-          Text('Job Type:'),
-          Row(
-            children: [
-              Checkbox(
-                value: isRemote,
-                onChanged: onRemoteChanged,
+              Row(
+                children: [
+                  Text('Location:'),
+                  SizedBox(width: 10),
+                  Card(
+                      child: DropdownButton<String>(
+                          onChanged: jp.onLocationChanged,
+                          underline: SizedBox(),
+                          value: jp.filterDropdownValue,
+                          items: context
+                              .read(jobProvider)
+                              .filterList
+                              .toList()
+                              .map((location) => DropdownMenuItem<String>(
+                                    child: Text(location),
+                                    value: location,
+                                  ))
+                              .toList()))
+                ],
               ),
-              Text('Remote'),
-              Checkbox(
-                value: isOnsite,
-                onChanged: onOnsiteChanged,
+              SizedBox(height: 15),
+              Text('Job Type:'),
+              Row(
+                children: [
+                  Checkbox(
+                    value: jp.isRemote,
+                    onChanged: jp.onRemoteChanged,
+                  ),
+                  Text('Remote'),
+                  Checkbox(
+                    value: jp.isOnsite,
+                    onChanged: jp.onOnsiteChanged,
+                  ),
+                  Text('On-site'),
+                ],
               ),
-              Text('On-site'),
+              ElevatedButton(
+                onPressed: context.read(jobProvider).applyFilter,
+                child: Text('Apply'),
+              ),
             ],
-          ),
-          ElevatedButton(
-            onPressed: () {
-              // after making a successful call to the server
-              Navigator.pop(context);
-            },
-            child: Text('Apply'),
-          ),
-        ],
+          );
+        },
       ),
     );
   }
 }
-

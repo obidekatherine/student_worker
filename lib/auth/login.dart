@@ -36,6 +36,9 @@ class _LoginScreenstate extends State<LoginScreen> {
         ),
         SizedBox(height: 3),
         MyTextField(
+          action: TextInputAction.next,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          validator: context.read(authProvider).emailValidator,
           hintText: 'danielsilver12@gmail.com',
           keyboardType: TextInputType.emailAddress,
           controller: context.read(authProvider).emailController,
@@ -65,6 +68,9 @@ class _LoginScreenstate extends State<LoginScreen> {
           builder: (_, watch, __) {
             var ap = watch(authProvider);
             return MyTextField(
+              action: TextInputAction.done,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              validator: context.read(authProvider).passwordValidator,
               maxLines: 1,
               hintText: 'Machine',
               obscureText: ap.passwordIsHidden,
@@ -128,7 +134,8 @@ class _LoginScreenstate extends State<LoginScreen> {
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF0A674F)),
         ),
-        onPressed: () => context.read(authProvider).onAuthPressed(AuthAction.login),
+        onPressed: () =>
+            context.read(authProvider).onAuthPressed(AuthAction.login),
         child: Text(
           'Login',
           style: GoogleFonts.roboto(

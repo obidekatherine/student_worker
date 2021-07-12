@@ -73,6 +73,7 @@ class _ResumePage2State extends State<CreateEmployerAcct2> {
                 height: 3.0,
               ),
               MyTextField(
+                  action: TextInputAction.next,
                   onChanged: (value) => context
                       .read(employerProvider)
                       .onChanged(employerCompanyNameKey, value),
@@ -94,6 +95,7 @@ class _ResumePage2State extends State<CreateEmployerAcct2> {
               ),
               SizedBox(height: 3.0),
               MyTextField(
+                  action: TextInputAction.next,
                   maxLines: 5,
                   onChanged: (value) => context
                       .read(employerProvider)
@@ -118,6 +120,7 @@ class _ResumePage2State extends State<CreateEmployerAcct2> {
                 height: 3.0,
               ),
               MyTextField(
+                  action: TextInputAction.next,
                   onChanged: (value) => context
                       .read(employerProvider)
                       .onChanged(employerAddressKey, value),
@@ -136,6 +139,7 @@ class _ResumePage2State extends State<CreateEmployerAcct2> {
               ),
               SizedBox(height: 3.0),
               MyTextField(
+                  action: TextInputAction.next,
                   onChanged: (value) => context
                       .read(employerProvider)
                       .onChanged(employerCurrentStateKey, value),
